@@ -42,10 +42,11 @@ function onloadBody() {
 	document.body.appendChild(getHtmlTable());
 	document.body.onkeydown = onKeyDown;
 
-	var refreshButton = document.createElement("button");
-	refreshButton.onclick = refresh;
-	refreshButton.innerHTML = "refresh";
-	document.body.appendChild(refreshButton);
+	var resetButton = document.createElement("button");
+	resetButton.id = "ResetButton";
+	resetButton.onclick = refresh;
+	resetButton.innerHTML = "reset";
+	document.body.appendChild(resetButton);
 }
 
 function isLegalKey(key) {

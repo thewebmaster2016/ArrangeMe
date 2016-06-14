@@ -1,10 +1,24 @@
 .cell {
-	height: 50px;
 	width: 50px;
+	height: 50px;
+
 	border: 2px solid black;
-	text-align: center;;
+	text-align: center;
 }
 
 #ArrangeMeTable {
-	table-layout: initial;
+    width: 50%;
+    height: 50%;
+
+	margin-left:auto;
+    margin-right:auto;
+}
+
+#ResetButton {
+	width: 10%;
+
+	display: block;
+	margin-top: 10px;
+	margin-left:auto;
+    margin-right:auto;
 }
