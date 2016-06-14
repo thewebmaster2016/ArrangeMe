@@ -121,6 +121,7 @@ function isDone() {
 function alertIfDone() {
 	if (isDone()) {
 		alert('Done!');
+		loadNewLevel();
 	}
 }
 
@@ -148,4 +149,25 @@ function refresh() {
 			break;
 		}
 	}
+}
+
+function loadNewLevel() {
+	var xhttp;
+	if (window.XMLHttpRequest) {
+    	xhttp = new XMLHttpRequest();
+    } else {
+	    // code for IE6, IE5
+	    xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	xhttp.onreadystatechange = function() {
+	    if (xhttp.readyState == 4 && xhttp.status == 200) {
+	     //document.getElementById("demo").innerHTML = xhttp.responseText;
+	     var level = xhttp.responseText;
+	    }
+  	};
+ 	
+ 	//POST?
+ 	xhttp.open("GET", "gethint.php?level=" + tableSize+1, true);
+  	xhttp.send();
 }
