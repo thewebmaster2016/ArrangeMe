@@ -1,9 +1,14 @@
 var tableSize = 3;
 var empty = (tableSize-1) + "_" + (tableSize-1)
-var CELL_CLASSNAME = "cell";
 
-function onloadBody() {
+var CELL_CLASSNAME = "cell";
+var TABLE_ID = "ArrangeMeTable";
+
+function getHtmlTable() {
+	empty = (tableSize-1) + "_" + (tableSize-1)
+
 	var htmlTable = document.createElement("table");
+	htmlTable.id = TABLE_ID;
 	
 	for (var rowIndex=0; rowIndex<tableSize; rowIndex++) {
 		var row = document.createElement("tr");
@@ -28,8 +33,19 @@ function onloadBody() {
 		}
 		htmlTable.appendChild(row);
 	}
-	document.body.appendChild(htmlTable);
+
+	return htmlTable;
+}
+
+function onloadBody() {
+	
+	document.body.appendChild(getHtmlTable());
 	document.body.onkeydown = onKeyDown;
+
+	var refreshButton = document.createElement("button");
+	refreshButton.onclick = refresh;
+	refreshButton.innerHTML = "refresh";
+	document.body.appendChild(refreshButton);
 }
 
 function isLegalKey(key) {
@@ -120,5 +136,15 @@ function onKeyDown(event) {
 		emptyElement.innerHTML = temp;
 
 		alertIfDone();
+	}
+}
+
+function refresh() {
+	var children = document.body.childNodes;
+	for (var child in children) {
+		if (children[child].id == TABLE_ID) {
+			document.body.replaceChild(getHtmlTable(), children[child]);
+			break;
+		}
 	}
 }
